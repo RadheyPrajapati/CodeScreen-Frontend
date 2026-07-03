@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+/* Custom styling for premium UI experience */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  font-family: 'Inter', 'Outfit', sans-serif;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background-color: #030712; /* Tailwind dark-950 */
+  color: #f3f4f6; /* Tailwind gray-100 */
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Glassmorphism custom classes */
+.glass {
+  background: rgba(17, 24, 39, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-accent {
+  background: rgba(99, 102, 241, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.glass-card {
+  background: rgba(30, 41, 59, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  background: rgba(30, 41, 59, 0.55);
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b0f19;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4f46e5;
+}
+
+/* Animation Utilities */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.33);
+  }
+  80%, 100% {
+    opacity: 0;
+  }
+}
+
+.animate-pulse-ring {
+  position: relative;
+}
+
+.animate-pulse-ring::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: -4px;
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  border-radius: inherit;
+  background-color: currentColor;
+  opacity: 0.75;
+  animation: pulse-ring 1.5s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
+}
+
+/* Hide default scrollbars but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Monaco container override */
+.monaco-editor {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+/* Custom CSS variables for app layout */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  border: none;
+  text-align: left;
+}
+
+/* Force native select option dropdowns to use dark background and white text for high contrast */
+select option {
+  background-color: #111827 !important; /* Tailwind bg-dark-900 equivalent */
+  color: #f3f4f6 !important;
+}
+
+select {
+  color-scheme: dark;
+}
