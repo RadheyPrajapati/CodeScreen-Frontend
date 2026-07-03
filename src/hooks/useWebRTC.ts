@@ -233,7 +233,7 @@ export const useWebRTC = (roomId: string, userRole: 'candidate' | 'interviewer')
       initializePeerConnection(localStream);
     }
     
-    const pc = peerConnectionRef.current;
+    const pc = peerConnectionRef.current as any;
     if (!pc || pc.signalingState === 'closed') return;
 
     setConnectionStatus('connecting');
@@ -277,7 +277,7 @@ export const useWebRTC = (roomId: string, userRole: 'candidate' | 'interviewer')
       initializePeerConnection(localStream);
     }
     
-    const pc = peerConnectionRef.current;
+    const pc = peerConnectionRef.current as any;
     if (!pc || pc.signalingState === 'closed') {
       console.log('Buffered remote offer because peer connection is not initialized yet.');
       pendingOffer.current = offer;

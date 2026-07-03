@@ -103,12 +103,12 @@ export const QuestionManagement: React.FC = () => {
 
     setAiLoading(true);
     try {
-      const generated = await questionApi.generateQuestion({
+      const generated = (await questionApi.generateQuestion({
         roughQuestion,
         difficulty,
         constraintsLevel: 'standard',
         testCaseCount: 3
-      });
+      })) as any;
 
       if (generated) {
         setTitle(generated.title || '');

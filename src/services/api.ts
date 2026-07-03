@@ -222,6 +222,30 @@ export const questionApi = {
         return mockDb.getMockData<mockDb.Question>('cs_questions');
       }
     );
+  },
+
+  updateQuestion: async (queId: number, data: any) => {
+    return handleApiCall(
+      () => apiClient.put(`/question/updateQuestion`, { id: queId, ...data }),
+      () => {
+        const questions = mockDb.getMockData<mockDb.Question>('cs_questions');
+        const updated = questions.map(q => q.id === queId ? { ...q, ...data } : q);
+        mockDb.setMockData('cs_questions', updated);
+        return { msg: 'que updated!', success: true };
+      }
+    );
+  },
+
+  deleteQuestion: async (queId: number) => {
+    return handleApiCall(
+      () => apiClient.delete(`/question/deleteQuestion`, { params: { queId } }),
+      () => {
+        const questions = mockDb.getMockData<mockDb.Question>('cs_questions');
+        const filtered = questions.filter(q => q.id !== queId);
+        mockDb.setMockData('cs_questions', filtered);
+        return { msg: 'que deleted!', success: true };
+      }
+    );
   }
 };
 
